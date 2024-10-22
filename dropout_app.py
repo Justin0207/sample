@@ -9,7 +9,6 @@ Created on Sat Oct 19 11:03:29 2024
 
 import streamlit as st
 import pandas as pd
-import numpy as np
 from streamlit_option_menu import option_menu
 import pickle
 import base64
@@ -22,7 +21,7 @@ from feature_engineering import *
 with open(r'feature_engineering.pkl', 'rb') as f:
     pipeline_eng = pickle.load(f)
     
-with open(r'C:\Users\HP\Desktop\Student Dropout Project\tuned models\grid_gdb.pkl', 'rb') as f:
+with open(r'grid_gdb.pkl', 'rb') as f:
     model = pickle.load(f)
     
 st.set_page_config(
@@ -56,7 +55,7 @@ def set_background(main_bg):
          unsafe_allow_html=True
      )
 
-set_background(r'C:\Users\HP\Desktop\academic success.jpg')
+set_background(r'academic success.jpg')
     
 # Helper function to display SHAP plots in Streamlit
 def st_shap(plot, height=None):
@@ -73,7 +72,7 @@ with st.sidebar:
 
 
 
-df = pd.read_csv(r'C:\Users\HP\Desktop\data_renamed.csv')
+df = pd.read_csv(r'data_renamed.csv')
 categorical_cols = [
             'Marital status', 'Application mode', 'Application order', 'Course', 'Daytime/evening attendance',
             'Previous qualification', 'Nationality', "Mother's qualification", "Father's qualification",
@@ -176,7 +175,7 @@ if selected == 'Dropout Prediction':
                 st.balloons()
 
 if selected == 'Feature Importance':
-    train = pd.read_csv(r'C:\Users\HP\Desktop\Student Dropout Project\train_dataset.csv')
+    train = pd.read_csv(r'train_dataset.csv')
 
     # Check if user_input is available in session state
     if 'user_input' in st.session_state:
